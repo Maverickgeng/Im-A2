@@ -1,53 +1,73 @@
 
 // script.js
 
-// Example: Mouse hover effect
-document.getElementById('content').addEventListener('mouseover', function() {
-    this.style.backgroundColor = '#ffeb3b';
-});
+// Three.js setup
+let scene, camera, renderer, controls;
 
-document.getElementById('content').addEventListener('mouseout', function() {
-    this.style.backgroundColor = '';
-});
+function init3DModel() {
+    const container = document.getElementById('model-container');
 
-// Example: Click effect
-document.getElementById('content').addEventListener('click', function() {
-    alert('Content clicked!');
-});
+    // Scene
+    scene = new THREE.Scene();
 
-// 鼠标跟随效果
-const follower = document.getElementById('follower');
-document.addEventListener('mousemove', function(e) {
-    follower.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-});
+    // Camera
+    camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+    camera.position.set(0, 1, 2);
 
-// 点击生成随机颜色方块
-document.addEventListener('click', function(e) {
-    const box = document.createElement('div');
-    box.className = 'random-box';
-    box.style.left = `${e.clientX - 25}px`; // Center the box at click position
-    box.style.top = `${e.clientY - 25}px`; // Center the box at click position
-    box.style.backgroundColor = getRandomColor();
-    document.body.appendChild(box);
-});
+    // Renderer
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    container.appendChild(renderer.domElement);
 
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(5, 10, 7.5);
+    scene.add(directionalLight);
+
+    // Load model
+    const loader = new THREE.GLTFLoader();
+    loader.load('maverick.glb', function (gltf) {
+        const model = gltf.scene;
+        scene.add(model);
+    }, undefined, function (error) {
+        console.error(error);
+    });
+
+    // Controls
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.25;
+    controls.enableZoom = true;
+
+    window.addEventListener('resize', onWindowResize);
+    animate();
 }
 
-// 页面滚动动画
-document.addEventListener('scroll', function() {
-    const content = document.getElementById('content');
-    const scrollPosition = window.scrollY;
-    content.style.transform = `translateY(${scrollPosition * 0.5}px)`;
-});
+function onWindowResize() {
+    const container = document.getElementById('model-container');
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+}
 
-// 鼠标拖尾雾化线条效果
+function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+}
+
+// Initialize the 3D model
+init3DModel();
+
+// Existing code for custom cursor and trail effect
+// Custom cursor element
+const customCursor = document.getElementById('customCursor');
+
+// Canvas setup for mouse trail
 const canvas = document.getElementById('trailCanvas');
 const ctx = canvas.getContext('2d');
 let width = canvas.width = window.innerWidth;
@@ -58,41 +78,76 @@ window.addEventListener('resize', () => {
     height = canvas.height = window.innerHeight;
 });
 
+// Variables for mouse position and particles
 let mouseX = 0;
 let mouseY = 0;
-const trail = [];
+const particles = [];
+const maxParticles = 10;  // Shorten the trail further
 
 document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+    customCursor.style.left = `${mouseX}px`;
+    customCursor.style.top = `${mouseY}px`;
+    addParticle(mouseX, mouseY);
 });
 
-function drawTrail() {
-    ctx.clearRect(0, 0, width, height);
-    
-    trail.push({ x: mouseX, y: mouseY });
-
-    if (trail.length > 100) {
-        trail.shift();
+document.addEventListener('mouseover', (e) => {
+    if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') {
+        customCursor.classList.add('hover');
+    } else {
+        customCursor.classList.remove('hover');
     }
+});
 
+function addParticle(x, y) {
+    if (particles.length > maxParticles) {
+        particles.shift();
+    }
+    particles.push({ x, y, alpha: 1, size: Math.random() * 0.5 + 0.5 });  // Finer line
+}
+
+function drawParticles() {
+    ctx.clearRect(0, 0, width, height);
     ctx.beginPath();
-    for (let i = 0; i < trail.length; i++) {
-        const opacity = i / trail.length;
-        ctx.strokeStyle = `rgba(0, 0, 0, ${opacity})`;
-        ctx.lineWidth = 5;
-        if (i === 0) {
-            ctx.moveTo(trail[i].x, trail[i].y);
-        } else {
-            ctx.lineTo(trail[i].x, trail[i].y);
+    for (let i = 1; i < particles.length; i++) {
+        const p1 = particles[i - 1];
+        const p2 = particles[i];
+        const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${p1.alpha})`);
+        gradient.addColorStop(1, `rgba(0, 0, 0, ${p1.alpha})`);
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = p1.size;
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        p1.alpha -= 0.1;  // Faster fade out for shorter trail
+        if (p1.alpha <= 0) {
+            particles.splice(i - 1, 1);
+            i--;
         }
     }
+    ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+    ctx.shadowBlur = 8;
     ctx.stroke();
 }
 
-function animate() {
-    drawTrail();
-    requestAnimationFrame(animate);
+function animateParticles() {
+    drawParticles();
+    requestAnimationFrame(animateParticles);
 }
 
-animate();
+animateParticles();
+
+// 3D perspective effect on video
+const videoContainer = document.querySelector('.media-player');
+videoContainer.addEventListener('mousemove', (e) => {
+    const rect = videoContainer.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const midX = rect.width / 2;
+    const midY = rect.height / 2;
+    const rotateX = ((y - midY) / midY) * 10;  // Further reduced rotation for effect
+    const rotateY = ((x - midX) / midX) * -10;  // Further reduced rotation for effect
+    videoContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    videoContainer.style.boxShadow = `${(x - midX) / midX * 10}px ${(y - midY) / midY * 10}px 20px rgba(255, 255, 255, 0.3)`;
+});
