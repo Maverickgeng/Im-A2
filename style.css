@@ -1,44 +1,157 @@
 
 /* style.css */
 
-/* 基础样式 */
-body {
-    font-family: Arial, sans-serif;
+:root {
+    --primary-bg-color: #000000;
+    --text-color: #ffffff;
+    --main-bg-color: #333;
+    --main-text-color: #fff;
+    --main-btn-bg-color: #938989;
+  }
+  
+  body,
+  h1,
+  p,
+  ul {
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+  }
+  
+  body {
+    font-family: "Arial", sans-serif;
+    background-color: var(--primary-bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     overflow: hidden;
-}
+    cursor: none; /
+  }
+  
+  /* Add additional styles as needed */
+  
+  /* Create a container for the main content */
+  .container {
+    max-width: 1000px;
+    width: 100%;
+    padding: 10px;
+  }
+  
+  /* Header styling */
+  header {
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+  }
+  
+  /* Navigation styling */
+  nav {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+  nav ul li {
+    margin-right: 20px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: var(--text-color);
+  }
+  
+  /* Media player styling */
+  .media-player {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .media-player video {
+    max-width: 100%;
+  }
+  
+  .custom-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .custom-controls button {
+    background-color: var(--main-btn-bg-color);
+    color: var(--main-text-color);
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #ddd;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+  
+  .progress-bar span {
+    display: block;
+    height: 100%;
+    background-color: var(--main-bg-color);
+    width: 0;
+    transition: width 0.3s ease;
+  }
+  
+  /* Footer styling */
+  footer {
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+  }
+
+/* 加上的 */
 
 /* 过渡效果 */
 #content {
     transition: transform 0.5s ease-in-out;
 }
-
-/* 鼠标悬停效果 */
-#content:hover {
-    transform: scale(1.05);
+#model-container {
+    width: 100%;
+    height: 50vh; /* Adjust the height as needed */
+    position: relative;
 }
 
-/* 鼠标跟随元素样式 */
-#follower {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: red;
-    border-radius: 50%;
-    pointer-events: none;
-    transition: transform 0.1s ease;
+.media-player {
+    position: relative;
+    width: 80%;
+    height: 60vh;
+    overflow: hidden;
+    margin: auto;
+    transform: rotateX(0deg) rotateY(0deg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-/* 随机方块样式 */
-.random-box {
-    position: absolute;
-    width: 50px;
-    height: 50px;
+#custom-video-player {
+    width: 100%;
+    height: 100%;
 }
 
-/* Canvas 样式 */
 #trailCanvas {
     position: absolute;
     top: 0;
@@ -46,4 +159,32 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
+    z-index: 1;
+}
+
+#customCursor {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 2px solid black;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease, border-width 0.2s ease;
+    box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.8); /* Glowing effect */
+}
+
+button, a {
+    cursor: pointer;
+}
+
+button:hover #customCursor, a:hover #customCursor {
+    transform: translate(-50%, -50%) scale(1.5);
+    border-width: 3px;
+}
+
+.media-player:hover {
+    transform: scale(1.05) rotateX(0deg) rotateY(0deg);
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
 }
