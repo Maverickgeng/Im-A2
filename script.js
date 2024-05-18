@@ -1,4 +1,3 @@
-
 // script.js
 
 // Three.js setup
@@ -12,7 +11,7 @@ function init3DModel() {
 
     // Camera
     camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-    camera.position.set(0, 1, 2);
+    camera.position.set(0, 0, 1.5);
 
     // Renderer
     renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -21,10 +20,10 @@ function init3DModel() {
     container.appendChild(renderer.domElement);
 
     // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    const ambientLight = new THREE.AmbientLight(0xcccccc, 5); // Soft morning light
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    const directionalLight = new THREE.DirectionalLight(0xffeecc, 20); // Morning sunlight color
     directionalLight.position.set(5, 10, 7.5);
     scene.add(directionalLight);
 
@@ -32,15 +31,31 @@ function init3DModel() {
     const loader = new THREE.GLTFLoader();
     loader.load('maverick.glb', function (gltf) {
         const model = gltf.scene;
+
+        // Apply metal material
+        model.traverse((child) => {
+            if (child.isMesh) {
+                child.material = new THREE.MeshStandardMaterial({
+                    color: 0xaaaaaa,
+                    metalness: 1,  // Fully metallic
+                    roughness: 0.2  // Slightly rough
+                });
+            }
+        });
+
+        model.position.set(0, 0, 0);
         scene.add(model);
+        controls.target.copy(model.position); // Set controls target to model position
     }, undefined, function (error) {
         console.error(error);
     });
 
+    
+
     // Controls
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.dampingFactor = 0.25;
+    controls.dampingFactor = 0.5;
     controls.enableZoom = true;
 
     window.addEventListener('resize', onWindowResize);

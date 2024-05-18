@@ -13,8 +13,8 @@
   h1,
   p,
   ul {
-    margin: 0;
-    padding: 0;
+    margin: auto;
+    padding: auto;
   }
   
   body {
@@ -130,16 +130,18 @@
 #content {
     transition: transform 0.5s ease-in-out;
 }
+
+
 #model-container {
     width: 100%;
-    height: 50vh; /* Adjust the height as needed */
+    height: 40vh; /* Adjust the height as needed */
     position: relative;
 }
 
 .media-player {
     position: relative;
     width: 80%;
-    height: 60vh;
+    height: 40vh;
     overflow: hidden;
     margin: auto;
     transform: rotateX(0deg) rotateY(0deg);
@@ -188,3 +190,10 @@ button:hover #customCursor, a:hover #customCursor {
     transform: scale(1.05) rotateX(0deg) rotateY(0deg);
     box-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
 }
+
+.scroll-container {
+    max-height: 100vh; /* Adjust this value as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
