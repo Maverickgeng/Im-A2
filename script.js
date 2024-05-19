@@ -1,6 +1,3 @@
-// script.js
-
-
 // Three.js setup
 let scene, camera, renderer, controls;
 
@@ -50,8 +47,6 @@ function init3DModel() {
     }, undefined, function (error) {
         console.error(error);
     });
-
-    
 
     // Controls
     controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -230,7 +225,18 @@ video.addEventListener('timeupdate', () => {
     progressBar.style.width = `${progressPercent}%`;
 });
 
-
+// Ensure click events work across all browsers
 document.getElementById('play-pause').addEventListener('click', () => {
     console.log('Play/Pause button clicked');
+});
+
+// Adding pointer events for touch devices
+['touchstart', 'touchmove'].forEach((event) => {
+    document.addEventListener(event, (e) => {
+        mouseX = e.touches[0].clientX;
+        mouseY = e.touches[0].clientY;
+        customCursor.style.left = `${mouseX}px`;
+        customCursor.style.top = `${mouseY}px`;
+        addParticle(mouseX, mouseY);
+    });
 });

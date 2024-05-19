@@ -24,33 +24,33 @@
     cursor: none; /
   }
   
-  /* Add additional styles as needed */
-  /* Import custom font of my heading */
+  
+  /* I import a custom font for my heading */
 @font-face {
     font-family: 'Catherova';
     src: url('Catherova.ttf') format('truetype');
 }
 
-/* Apply custom font to the heading and allow font size and position adjustments */
+/* Apply custom font to the heading and allow font size and position adjustments, the default font size, smooth transition for font size change, allow positioning adjustments  */
 .custom-font {
     font-family: 'Catherova', sans-serif;
-    font-size: 60px; /* Default font size */
-    transition: font-size 0.3s ease; /* Smooth transition for font size change */
-    position: relative; /* To allow positioning adjustments */
+    font-size: 60px; 
+    transition: font-size 0.3s ease; 
+    position: relative; 
 }
 
-/* Animation on hover */
+/* Animation on hover make it increas it's size on hovert, then add a black shadow glow effect   */
 .custom-font:hover {
-    font-size: 90px; /* Increase font size on hover */
-    text-shadow: 0 0 10px black; /* Add black shadow glow effect */
+    font-size: 90px; 
+    text-shadow: 0 0 10px black; 
 }
 
-/* Example of adjusting font position */
+/* Adjusting font position and the font size of the heading*/
 .custom-font {
-    top: 20px; /* Adjust as needed */
-    left: 20px; /* Adjust as needed */
-    text-align: center; /* Center the text */
-    margin: 0 auto; /* Center horizontally */
+    top: 20px; 
+    left: 20px; 
+    text-align: center; 
+    margin: 0 auto; 
     display: inline-block;
 }
 
@@ -175,16 +175,13 @@ footer {
   width: 1000px;
 
 }
-/* 加上的 */
-
-/* 过渡效果 */
 #content {
     transition: transform 0.5s ease-in-out;
 }
 
 
 
-
+ /* I make a container to hold the 3d modle and make it at the top of the webpage and the width is 100% */
 #model-container {
     width: 100%;
     height: 20vh; /* Adjust the height as needed */
