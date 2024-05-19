@@ -11,13 +11,29 @@
 <body>
     
     <div id="model-container"></div>
+     <!-- Video Background -->
+     <video class="video-background" autoplay loop muted>
+        <source src="background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
     
-    
-    <div id="content">
+    <div class="scroll-container">
          <!-- Header Section -->
+
+
+
+ <!-- Content Area -->
+ <div class="content">
+
+    <div style="height: 800px;">
+
+
     <header>
-        <h1>Media Player Website</h1>
+        <h1 class="custom-font">Media Player Website</h1>
       </header>
+
+      
   
       <!-- Navigation Section -->
       <nav>
@@ -29,9 +45,9 @@
           <!-- Add or remove navigation items as needed -->
         </ul>
       </nav>
+
   
-      <!-- Main Content Section -->
-      <main class="container">
+    
         <!-- Media Player Section -->
 
         <div class="media-player">
@@ -41,26 +57,31 @@
                 type="video/mp4"
               />
             
-            <button id="play-pause-btn" onclick="togglePlayPause()">
-              <img
-                id="play-pause-img"
-                src="https://img.icons8.com/ios-glyphs/30/play--v1.png"
-                alt="Play Button"
-                width="24"
-                height="24"
-              />
-            </button>
+
+       
+
             <!-- add the missing buttons or functionality here -->
             <div class="progress-bar">
               <span id="progress-bar-fill"></span>
             </div>
           </div>
         </div>
+
+        <!-- Scrolling Text -->
+<div class="scrolling-container">
+    <div class="scrolling-text">
+        <div>Welcome to Maverick’s media player website,</div>
+        <div>hope you happy with the style,</div>
+        <div>and have fun playing around the 3D model at the top.</div>
+    </div>
+</div>
   
         <!-- Additional Content Section -->
         <section>
           <h2>Additional Content</h2>
-          <p>This is where you can showcase any other relevant content.</p>
+          <p>This is where you can showcase any other relevant content.
+            
+          </p>
           <!-- Add more content as needed -->
         </section>
       </main>
@@ -77,10 +98,7 @@
      
     </div>
 
-    <div id="content">
-        <h1>3D Mouse Interaction</h1>
-        <p>Move your mouse around to see the effects!</p>
-    </div>
+  
 
    
 

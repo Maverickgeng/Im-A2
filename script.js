@@ -1,5 +1,6 @@
 // script.js
 
+
 // Three.js setup
 let scene, camera, renderer, controls;
 
@@ -11,7 +12,7 @@ function init3DModel() {
 
     // Camera
     camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-    camera.position.set(0, 0, 1.5);
+    camera.position.set(0, 0, 0.8);
 
     // Renderer
     renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -94,8 +95,8 @@ window.addEventListener('resize', () => {
 });
 
 // Variables for mouse position and particles
-let mouseX = 0;
-let mouseY = 0;
+let mouseX = 50;
+let mouseY = 50;
 const particles = [];
 const maxParticles = 10;  // Shorten the trail further
 
@@ -119,7 +120,7 @@ function addParticle(x, y) {
     if (particles.length > maxParticles) {
         particles.shift();
     }
-    particles.push({ x, y, alpha: 1, size: Math.random() * 0.5 + 0.5 });  // Finer line
+    particles.push({ x, y, alpha: 10, size: Math.random() * 0.5 + 0.5 });  // Finer line
 }
 
 function drawParticles() {
@@ -161,8 +162,62 @@ videoContainer.addEventListener('mousemove', (e) => {
     const y = e.clientY - rect.top;
     const midX = rect.width / 2;
     const midY = rect.height / 2;
-    const rotateX = ((y - midY) / midY) * 10;  // Further reduced rotation for effect
-    const rotateY = ((x - midX) / midX) * -10;  // Further reduced rotation for effect
+    const rotateX = ((y - midY) / midY) * 20;  // Further reduced rotation for effect
+    const rotateY = ((x - midX) / midX) * -20;  // Further reduced rotation for effect
     videoContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     videoContainer.style.boxShadow = `${(x - midX) / midX * 10}px ${(y - midY) / midY * 10}px 20px rgba(255, 255, 255, 0.3)`;
+});
+
+const video = document.getElementById('video');
+const replayButton = document.getElementById('replay');
+const playPauseButton = document.getElementById('play-pause');
+const volumeToggleButton = document.getElementById('volume-toggle');
+const volumeDownButton = document.getElementById('volume-down');
+const volumeUpButton = document.getElementById('volume-up');
+const fullscreenButton = document.getElementById('fullscreen');
+
+// 重播功能
+replayButton.addEventListener('click', () => {
+    video.currentTime = 0;
+    video.play();
+});
+
+// 播放/暂停功能
+playPauseButton.addEventListener('click', () => {
+    if (video.paused) {
+        video.play();
+        playPauseButton.src = 'icons/pause.png';
+    } else {
+        video.pause();
+        playPauseButton.src = 'icons/play.png';
+    }
+});
+
+// 音量开关功能
+volumeToggleButton.addEventListener('click', () => {
+    video.muted = !video.muted;
+    volumeToggleButton.src = video.muted ? 'icons/mute.png' : 'icons/volume-up.png';
+});
+
+// 减小音量功能
+volumeDownButton.addEventListener('click', () => {
+    video.volume = Math.max(video.volume - 0.1, 0);
+});
+
+// 增大音量功能
+volumeUpButton.addEventListener('click', () => {
+    video.volume = Math.min(video.volume + 0.1, 1);
+});
+
+// 全屏功能
+fullscreenButton.addEventListener('click', () => {
+    if (video.requestFullscreen) {
+        video.requestFullscreen();
+    } else if (video.mozRequestFullScreen) { // Firefox
+        video.mozRequestFullScreen();
+    } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
+        video.webkitRequestFullscreen();
+    } else if (video.msRequestFullscreen) { // IE/Edge
+        video.msRequestFullscreen();
+    }
 });

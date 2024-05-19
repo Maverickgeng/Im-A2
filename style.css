@@ -9,13 +9,7 @@
     --main-btn-bg-color: #938989;
   }
   
-  body,
-  h1,
-  p,
-  ul {
-    margin: auto;
-    padding: auto;
-  }
+ 
   
   body {
     font-family: "Arial", sans-serif;
@@ -31,26 +25,89 @@
   }
   
   /* Add additional styles as needed */
+  /* Import custom font of my heading */
+@font-face {
+    font-family: 'Catherova';
+    src: url('Catherova.ttf') format('truetype');
+}
+
+/* Apply custom font to the heading and allow font size and position adjustments */
+.custom-font {
+    font-family: 'Catherova', sans-serif;
+    font-size: 60px; /* Default font size */
+    transition: font-size 0.3s ease; /* Smooth transition for font size change */
+    position: relative; /* To allow positioning adjustments */
+}
+
+/* Animation on hover */
+.custom-font:hover {
+    font-size: 90px; /* Increase font size on hover */
+    text-shadow: 0 0 10px black; /* Add black shadow glow effect */
+}
+
+/* Example of adjusting font position */
+.custom-font {
+    top: 20px; /* Adjust as needed */
+    left: 20px; /* Adjust as needed */
+    text-align: center; /* Center the text */
+    margin: 0 auto; /* Center horizontally */
+    display: inline-block;
+}
+
+/* Style for the video player */
+.video-player {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.video-player video {
+    width: 80%;
+    max-width: 800px;
+    height: auto;
+    border: 2px solid #fff;
+    border-radius: 10px;
+}
+
+  /* Ensure body and html cover full viewport and have no margins */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+/* Make the video cover the entire viewport and fixed in place */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+
   
   /* Create a container for the main content */
   .container {
-    max-width: 1000px;
+    max-width: 10000px;
     width: 100%;
     padding: 10px;
   }
   
   /* Header styling */
   header {
-    background-color: var(--main-bg-color);
+
     color: var(--main-text-color);
-    padding: 10px 0;
+    
     text-align: center;
     width: 100%;
   }
   
   /* Navigation styling */
   nav {
-    margin-top: 20px;
+    margin-top: 30px;
     text-align: center;
   }
   
@@ -61,7 +118,7 @@
   }
   
   nav ul li {
-    margin-right: 20px;
+    margin-right: 50px;
   }
   
   nav a {
@@ -71,7 +128,7 @@
   
   /* Media player styling */
   .media-player {
-    width: 100%;
+    width: 20;
     margin: 0 auto;
   }
   
@@ -132,9 +189,11 @@
 }
 
 
+
+
 #model-container {
     width: 100%;
-    height: 40vh; /* Adjust the height as needed */
+    height: 30vh; /* Adjust the height as needed */
     position: relative;
 }
 
@@ -195,5 +254,55 @@ button:hover #customCursor, a:hover #customCursor {
     max-height: 100vh; /* Adjust this value as needed */
     overflow-y: auto; /* Enable vertical scrolling */
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Import custom font */
+@font-face {
+    font-family: 'Orchestra';
+    src: url('Orchestra-Regular.otf') format('opentype');
+}
+
+/* Scrolling text container styling */
+.scrolling-container {
+    position: relative;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1000px;
+    height: 300px; /* Double the height */
+    overflow: hidden;
+    z-index: 1; /* Ensure it's above the video but below the content */
+    display: flex;
+    align-items: center;
+    mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+}
+
+/* Scrolling text styling */
+.scrolling-text {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Orchestra', sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
+    animation: scroll 8s linear infinite; /* Adjust the duration to control the speed */
+    text-align: center;
+    text-shadow: 4px 4px 8px black; /* Add heavy black shadow */
+}
+
+.scrolling-text div {
+    padding: 10px 0;
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
 }
 
