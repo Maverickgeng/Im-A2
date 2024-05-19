@@ -168,48 +168,38 @@ videoContainer.addEventListener('mousemove', (e) => {
     videoContainer.style.boxShadow = `${(x - midX) / midX * 10}px ${(y - midY) / midY * 10}px 20px rgba(255, 255, 255, 0.3)`;
 });
 
-const video = document.getElementById('video');
-const replayButton = document.getElementById('replay');
+const video = document.getElementById('custom-video-player');
 const playPauseButton = document.getElementById('play-pause');
-const volumeToggleButton = document.getElementById('volume-toggle');
+const muteUnmuteButton = document.getElementById('mute-unmute');
 const volumeDownButton = document.getElementById('volume-down');
 const volumeUpButton = document.getElementById('volume-up');
 const fullscreenButton = document.getElementById('fullscreen');
+const replayButton = document.getElementById('replay');
+const progressBar = document.querySelector('.progress-bar .progress');
 
-// 重播功能
-replayButton.addEventListener('click', () => {
-    video.currentTime = 0;
-    video.play();
-});
-
-// 播放/暂停功能
 playPauseButton.addEventListener('click', () => {
     if (video.paused) {
         video.play();
-        playPauseButton.src = 'icons/pause.png';
+        playPauseButton.src = 'pause.png';
     } else {
         video.pause();
-        playPauseButton.src = 'icons/play.png';
+        playPauseButton.src = 'play.png';
     }
 });
 
-// 音量开关功能
-volumeToggleButton.addEventListener('click', () => {
+muteUnmuteButton.addEventListener('click', () => {
     video.muted = !video.muted;
-    volumeToggleButton.src = video.muted ? 'icons/mute.png' : 'icons/volume-up.png';
+    muteUnmuteButton.src = video.muted ? 'no-audio.png' : 'audio.png';
 });
 
-// 减小音量功能
 volumeDownButton.addEventListener('click', () => {
     video.volume = Math.max(video.volume - 0.1, 0);
 });
 
-// 增大音量功能
 volumeUpButton.addEventListener('click', () => {
     video.volume = Math.min(video.volume + 0.1, 1);
 });
 
-// 全屏功能
 fullscreenButton.addEventListener('click', () => {
     if (video.requestFullscreen) {
         video.requestFullscreen();
@@ -220,4 +210,27 @@ fullscreenButton.addEventListener('click', () => {
     } else if (video.msRequestFullscreen) { // IE/Edge
         video.msRequestFullscreen();
     }
+});
+
+replayButton.addEventListener('click', () => {
+    video.currentTime = 0;
+    video.play();
+});
+
+video.addEventListener('play', () => {
+    playPauseButton.src = 'pause.png';
+});
+
+video.addEventListener('pause', () => {
+    playPauseButton.src = 'play.png';
+});
+
+video.addEventListener('timeupdate', () => {
+    const progressPercent = (video.currentTime / video.duration) * 100;
+    progressBar.style.width = `${progressPercent}%`;
+});
+
+
+document.getElementById('play-pause').addEventListener('click', () => {
+    console.log('Play/Pause button clicked');
 });
