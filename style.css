@@ -34,47 +34,29 @@
 /* Apply custom font to the heading and allow font size and position adjustments, the default font size, smooth transition for font size change, allow positioning adjustments  */
 .custom-font {
     font-family: 'Catherova', sans-serif;
-    font-size: 60px; 
+    font-size: 7vw; 
     transition: font-size 0.3s ease; 
     position: relative; 
 }
 
 /* Animation on hover make it increas it's size on hovert, then add a black shadow glow effect   */
 .custom-font:hover {
-    font-size: 90px; 
+    font-size: 10vw; 
     text-shadow: 0 0 10px black; 
 }
 
 /* Adjusting font position and the font size of the heading*/
 .custom-font {
-    top: 20px; 
+    top: 50px; 
     left: 20px; 
     text-align: center; 
-    margin: 0 auto; 
+    margin: 0px auto; 
     display: inline-block;
 }
 
-/* Style for the video player */
-.video-player {
-    margin-top: 20px;
-    text-align: center;
-}
 
-.video-player video {
-    width: 80%;
-    max-width: 800px;
-    height: auto;
-    border: 2px solid #fff;
-    border-radius: 10px;
-}
+  
 
-  /* Ensure body and html cover full viewport and have no margins */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-}
 
 /* Make the video cover the entire viewport and fixed in place */
 .video-background {
@@ -98,88 +80,7 @@ body, html {
     width: 100%;
   }
   
-  /* Navigation styling */
-  nav {
-    margin-top: 30px;
-    text-align: center;
-    margin-bottom: 30px;
-  }
   
-  nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-  }
-  
-  nav ul li {
-    margin-right: 60px;
-  }
-  
-  nav a {
-    text-decoration: none;
-    color: var(--text-color);
-  }
-  
-  /* Media player styling */
-  .media-player {
-    width: 20;
-    margin: 0 auto;
-  }
-  
-  .media-player video {
-    max-width: 100%;
-  }
-  
-  .custom-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 10px;
-    width: 100%;
-  }
-  
-  .custom-controls button {
-    background-color: var(--main-btn-bg-color);
-    color: var(--main-text-color);
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .progress-bar {
-    width: 100%;
-    height: 10px;
-    background-color: #ddd;
-    margin-top: 10px;
-    overflow: hidden;
-  }
-  
-  .progress-bar span {
-    display: block;
-    height: 100%;
-    background-color: var(--main-bg-color);
-    width: 0;
-    transition: width 0.3s ease;
-  }
-
-/* Footer styling */
-footer {
-  background-color: var(--main-bg-color);
-  color: var(--main-text-color);
-  text-align: center;
-  padding: 10px 0;
-  width: 1000px;
-
-}
-#content {
-    transition: transform 0.5s ease-in-out;
-}
-
-
 
  /* I make a container to hold the 3d modle and make it at the top of the webpage and the width is 100% */
 #model-container {
@@ -188,21 +89,7 @@ footer {
     position: relative;
 }
 
-.media-player {
-    position: relative;
-    width: 80%;
-    height: 40vh;
-    overflow: hidden;
-    margin: auto;
-    transform: rotateX(0deg) rotateY(0deg);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-}
 
-#custom-video-player {
-    width: 100%;
-    height: 100%;
-}
 
 #trailCanvas {
     position: absolute;
@@ -242,7 +129,7 @@ button:hover #customCursor, a:hover #customCursor {
 }
 
 .scroll-container {
-    max-height: 100vh; /* Adjust this value as needed */
+    max-height: 200vh; /* Adjust this value as needed */
     overflow-y: auto; /* Enable vertical scrolling */
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
@@ -275,7 +162,7 @@ button:hover #customCursor, a:hover #customCursor {
     display: flex;
     flex-direction: column;
     font-family: 'Orchestra', sans-serif;
-    font-size: 45px;
+    font-size: 5vh;
     font-weight: bold;
     color: white;
     white-space: nowrap;
@@ -359,6 +246,7 @@ button:hover #customCursor, a:hover #customCursor {
 }
 
 
+
 .gallery {
   display: flex;
   justify-content: center;
@@ -368,15 +256,15 @@ button:hover #customCursor, a:hover #customCursor {
   overflow: hidden;
   pointer-events: none;
   width: 100%;
-  top: 10vh; /* Move the gallery down */
-  left: -2vw; /* Move the gallery to the left */
+  top: 14vh; /* Move the gallery down */
+  left: -4.5vw; /* Move the gallery to the left */
 }
 
 .image-container {
   position: absolute;
   transform-origin: center center;
   transition: transform 0.5s ease, box-shadow 0.5s ease;
-  perspective: 1000px;
+  perspective: 900px;
 }
 
 .image-container .inner {
@@ -424,7 +312,7 @@ button:hover #customCursor, a:hover #customCursor {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.9);
+  background: #040000e6;
   display: none;
   justify-content: center;
   align-items: center;
@@ -432,11 +320,12 @@ button:hover #customCursor, a:hover #customCursor {
 
 .details .close {
   position: absolute;
-  top: 20px;
+  top: 2000px;
   right: 20px;
   font-size: 30px;
   cursor: pointer;
   transition: transform 0.3s ease;
+  color: #fff; /* Change the color to white */
 }
 
 .details .close:hover {
@@ -445,7 +334,7 @@ button:hover #customCursor, a:hover #customCursor {
 
 .details-content {
   width: 80%;
-  max-width: 800px;
+  max-width: 8000px;
   background: #333;
   padding: 20px;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
@@ -517,4 +406,34 @@ button:hover #customCursor, a:hover #customCursor {
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+
+.fade-out {
+  animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+      opacity: 1;
+      transform: scale(1);
+  }
+  100% {
+      opacity: 0;
+      transform: scale(3);
+  }
+}
+
+@keyframes expand {
+  0% {
+      transform: scale(1) rotateY(-45deg) rotateX(-5deg);
+      opacity: 1;
+  }
+  100% {
+      transform: scale(2.5) rotateY(0deg) rotateX(0deg);
+      opacity: 0;
+  }
+}
+
+.expand {
+  animation: expand 1s forwards;
 }

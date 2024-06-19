@@ -1,5 +1,7 @@
 // Ensure DOM is fully loaded before running script
 document.addEventListener('DOMContentLoaded', function() {
+
+     // I tried really hard to put a playable 3d modlie into my website. I think it is really cool to put at the begining of the website, and i use my name so i think i can use it as a tag of my work, and the footer gif as well to develop a strong personal style.   
     // Three.js setup
     let scene, camera, renderer, controls;
 
@@ -150,19 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     animateParticles();
 
-    // 3D perspective effect on video
-    const videoContainer = document.querySelector('.media-player');
-    videoContainer.addEventListener('mousemove', (e) => {
-        const rect = videoContainer.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const midX = rect.width / 2;
-        const midY = rect.height / 2;
-        const rotateX = ((y - midY) / midY) * 20;  // Further reduced rotation for effect
-        const rotateY = ((x - midX) / midX) * -20;  // Further reduced rotation for effect
-        videoContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        videoContainer.style.boxShadow = `${(x - midX) / midX * 10}px ${(y - midY) / midY * 10}px 20px rgba(255, 255, 255, 0.3)`;
-    });
+
 
     // Video player controls
     const video = document.getElementById('custom-video-player');
@@ -243,4 +233,108 @@ document.addEventListener('DOMContentLoaded', function() {
             bottomGifContainer.style.display = 'none';
         }
     });
+});
+
+ // Iminage controls
+
+ document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('.image');
+    const details = document.getElementById('details');
+    const closeBtn = document.getElementById('close');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    images.forEach(image => {
+        image.addEventListener('click', (e) => {
+            if (image.dataset.pdf === "true") {
+                e.preventDefault();
+                // Add animation class to both image and its inner container
+                const innerContainer = image.closest('.inner');
+                innerContainer.classList.add('expand');
+                image.classList.add('expand');
+                setTimeout(() => {
+                    window.location.href = 'pdf.html';
+                }, 1000); // Match this timeout with the animation duration
+            } else if (image.dataset.work2 === "true") {
+                e.preventDefault();
+                // Add animation class to both image and its inner container
+                const innerContainer = image.closest('.inner');
+                innerContainer.classList.add('expand');
+                image.classList.add('expand');
+                setTimeout(() => {
+                    window.location.href = 'work2.html';
+                }, 1000); // Match this timeout with the animation duration
+            } else if (image.dataset.work3 === "true") {
+                e.preventDefault();
+                // Add animation class to both image and its inner container
+                const innerContainer = image.closest('.inner');
+                innerContainer.classList.add('expand');
+                image.classList.add('expand');
+                setTimeout(() => {
+                    window.location.href = 'work3.html';
+                }, 1000); // Match this timeout with the animation duration
+            } else if (image.dataset.work4 === "true") {
+                e.preventDefault();
+                // Add animation class to both image and its inner container
+                const innerContainer = image.closest('.inner');
+                innerContainer.classList.add('expand');
+                image.classList.add('expand');
+                setTimeout(() => {
+                    window.location.href = 'work4.html';
+                }, 1000); // Match this timeout with the animation duration
+            } else if (image.dataset.work5 === "true") {
+                e.preventDefault();
+                // Add animation class to both image and its inner container
+                const innerContainer = image.closest('.inner');
+                innerContainer.classList.add('expand');
+                image.classList.add('expand');
+                setTimeout(() => {
+                    window.location.href = 'work5.html';
+                }, 1000); // Match this timeout with the animation duration
+            } else if (image.dataset.work6 === "true") {
+                e.preventDefault();
+                // Add animation class to both image and its inner container
+                const innerContainer = image.closest('.inner');
+                innerContainer.classList.add('expand');
+                image.classList.add('expand');
+                setTimeout(() => {
+                    window.location.href = 'work6.html';
+                }, 1000); // Match this timeout with the animation duration
+            } else {
+                details.style.display = 'flex';
+                showParticles(image);
+            }
+        });
+    });
+
+    closeBtn.addEventListener('click', () => {
+        details.style.display = 'none';
+    });
+
+    let mouse = { x: 0, y: 0 };
+    let particles = [];
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+
+    function drawTail() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, 10, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(mouse.x, mouse.y);
+        ctx.lineTo(mouse.x - 50, mouse.y - 50);
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.stroke();
+        requestAnimationFrame(drawTail);
+    }
+
+    drawTail();
 });
