@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品集网站</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .close {
+            position: fixed; /* Fix the position */
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            color: #fff; /* Change color to white */
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .header {
+            display: flex;
+            width: 80%;
+            margin: 20px 0;
+        }
+        .header img {
+            height: 400px;
+            object-fit: contain;
+        }
+        .header img:first-child {
+            width: 30%;
+            margin-right: 10px;
+        }
+        .header img:last-child {
+            width: 70%;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            width: 80%;
+            margin-bottom: 20px;
+        }
+        .item {
+            display: flex;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .item img, .item video {
+            width: 50%;
+            height: 400px;
+            object-fit: contain;
+        }
+        .item img {
+            margin-right: 10px;
+        }
+        .item:nth-child(even) img {
+            order: 2;
+            margin-right: 0;
+            margin-left: 10px;
+        }
+        .item:nth-child(even) video {
+            order: 1;
+        }
+    </style>
+</head>
+<body>
+    <span class="close" onclick="window.location.href='index.html'">&times;</span>
+    <div class="header">
+        <img src="work2 pics/1.PNG" alt="Left Image">
+        <img src="work2 pics/2.png" alt="Right Image">
+    </div>
+    <div class="content">
+        <div class="item">
+            <img src="work2 pics/1.jpg" alt="Image 1">
+            <video src="work2 pics/renwu.MOV" controls autoplay loop></video>
+        </div>
+        <div class="item">
+            <img src="2.png" alt="Image 2">
+            <video src="work2 pics/fo.MP4" controls autoplay loop></video>
+        </div>
+        <div class="item">
+            <img src="work2 pics/3.jpg" alt="Image 3">
+            <video src="work2 pics/ting.MP4" controls autoplay loop></video>
+        </div>
+        <div class="item">
+            <img src="work2 pics/4.jpg" alt="Image 4">
+            <video src="work2 pics/1.mp4" controls autoplay loop></video>
+        </div>
+    </div>
+</body>
+</html>

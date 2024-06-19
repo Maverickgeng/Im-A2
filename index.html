@@ -32,53 +32,52 @@
 
 
     <header>
-        <h1 class="custom-font">Media Player Website</h1>
+        <h1 class="custom-font">Photo gallery</h1>
       </header>
-
       
-  
-      <!-- Navigation Section -->
-      <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Videos</a></li>
-          <li><a href="#">Music</a></li>
-          <li><a href="#">Playlists</a></li>
-        
-        </ul>
-      </nav>
 
-  
-    
-        <!-- Media Player Section -->
-
-<!-- Custom Media Player -->
-<div class="media-player">
-  <video id="custom-video-player" controls>
-      <source src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/miac.mp4" type="video/mp4">
-  </video>
-  <div class="progress-bar">
-      <div class="progress"></div>
-  </div>
-  
-</div>
-
-<!-- Custom Media Player buttons, I add the buttons down the media player -->
-<div class="controls">
-  <img src="replay.png" id="replay" class="control-icon" alt="Replay">
-  <img src="play.png" id="play-pause" class="control-icon" alt="Play/Pause">
-  <img src="audio.png" id="mute-unmute" class="control-icon" alt="Mute/Unmute">
-  <img src="low-volume.png" id="volume-down" class="control-icon" alt="Volume Down">
-  <img src="audio.png" id="volume-up" class="control-icon" alt="Volume Up">
-  <img src="full-screen.png" id="fullscreen" class="control-icon" alt="Full Screen">
-</div>
-
-            <!-- add the missing buttons or functionality here -->
-            <div class="progress-bar">
-              <span id="progress-bar-fill"></span>
+   
+      <div class="gallery">
+        <!-- Placeholder for images -->
+        <div class="image-container" style="--i:1;">
+            <div class="inner">
+                <img src="1.png" class="image" data-pdf="true">
             </div>
-          </div>
         </div>
+        <div class="image-container" style="--i:2;">
+            <div class="inner">
+                <img src="2.png" class="image" data-work2="true">
+            </div>
+        </div>
+        <div class="image-container" style="--i:3;">
+            <div class="inner">
+                <img src="3.png" class="image" data-work3="true">
+            </div>
+        </div>
+        <div class="image-container" style="--i:4;">
+            <div class="inner">
+                <img src="4.png" class="image" data-work4="true">
+            </div>
+        </div>
+        <div class="image-container" style="--i:5;">
+            <div class="inner">
+                <img src="5.png" class="image" data-work5="true">
+            </div>
+        </div>
+        <div class="image-container" style="--i:6;">
+            <div class="inner">
+                <img src="6.png" class="image" data-work6="true">
+            </div>
+        </div>
+    </div>
+    <div class="details" id="details">
+        <span class="close" id="close">&times;</span>
+        <div class="details-content">
+            <!-- Details content goes here -->
+        </div>
+    </div>
+
+
         
 
         <!-- Scrolling Text: I made a scrolling text to add more elements to the website. -->
@@ -111,6 +110,8 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="script.js"></script>
+    <canvas id="canvas"></canvas>
+    
     
 </body>
 </html>

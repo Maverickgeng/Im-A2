@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"Daily Life"</title>
+    <style>
+        @font-face {
+            font-family: 'Catherova';
+            src: url('Catherova.ttf') format('truetype');
+        }
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Catherova', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            font-size: 5em;
+            margin: 40px 0;
+        }
+        .content-section {
+            width: 80%;
+            margin: 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .title-image-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 5em;
+            position: relative;
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        .section-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .section-content img {
+            width: calc(33.333% - 20px); /* Ensure three images per row */
+            margin: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            object-fit: cover; /* Ensure the aspect ratio is maintained */
+        }
+        .section-content img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px white;
+        }
+        .close {
+            position: fixed; /* Fix the position */
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            color: #fff; /* Change color to white */
+            cursor: pointer;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <span class="close" onclick="window.location.href='index.html'">&times;</span>
+    <h1> " Daily Life "</h1>
+
+    <div class="content-section">
+        <div class="title-image-container">
+            <div class="section-title floating" style="align-self: flex-start;">
+                Kids See Ghost
+            </div>
+            <img src="work4 pics/1.jpg" alt="Image 1">
+        </div>
+        <div class="section-content">
+            <img src="work4 pics/3.jpg" alt="Image 3">
+            <img src="work4 pics/4.jpg" alt="Image 4">
+            <img src="work4 pics/5.jpg" alt="Image 5">
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="title-image-container" style="flex-direction: row-reverse;">
+            <div class="section-title floating" style="align-self: flex-end;">
+                Vvren
+            </div>
+            <img src="work4 pics/6.JPG" alt="Image 6">
+        </div>
+        <div class="section-content">
+            <img src="work4 pics/7.JPG" alt="Image 7">
+            <img src="work4 pics/8.JPG" alt="Image 8">
+            <img src="work4 pics/9.JPG" alt="Image 9">
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="title-image-container">
+            <div class="section-title floating" style="align-self: flex-start;">
+                I Am Music
+            </div>
+            <img src="work4 pics/11.JPG" alt="Image 11">
+        </div>
+        <div class="section-content">
+            <img src="work4 pics/12.JPG" alt="Image 12">
+            <img src="work4 pics/13.JPG" alt="Image 13">
+        </div>
+    </div>
+</body>
+</html>

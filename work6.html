@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Underbridge</title>
+    <style>
+        @font-face {
+            font-family: 'Catherova';
+            src: url('Catherova.ttf') format('truetype');
+        }
+
+        body {
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            font-family: 'Catherova', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            color: white;
+            font-size: 5rem;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px white;
+        }
+
+        .video-container {
+            width: 90%;
+            max-width: 1200px;
+            margin-top: 20px;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+        }
+
+        .spacer {
+            height: 100px; /* Adjust the height to your preference */
+        }
+        
+        .close {
+            position: fixed; /* Fix the position */
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            color: #fff; /* Change color to white */
+            cursor: pointer;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <span class="close" onclick="window.location.href='index.html'">&times;</span>
+    <h1>" Underbridge "</h1>
+    <div class="gallery">
+        <img src="work6 pics/1.JPG" alt="Image 1">
+        <img src="work6 pics/2.JpG" alt="Image 2">
+        <img src="work6 pics/3.JPG" alt="Image 3">
+        <img src="work6 pics/4.jpg" alt="Image 4">
+    </div>
+    
+    <div class="video-container">
+        <video controls>
+            <source src="work6 pics/1.MOV" type="video/mp4">
+            
+        </video>
+    </div>
+
+    <div class="spacer"></div>
+</body>
+</html>
